@@ -2,7 +2,13 @@
 
 /* https://github.com/angular/protractor/blob/master/docs/toc.md */
 
+var mockModule = require('./backend.mock.js');
+
 describe('my app', function() {
+
+  beforeEach(function() {
+    browser.addMockModule('httpBackendMock', mockModule.httpBackendMock);
+  });
 
 
   it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
@@ -22,6 +28,11 @@ describe('my app', function() {
       expect(element.all(by.css('[ng-view] p')).first().getText()).
         toMatch(/partial for view 1/);
     });
+
+    it('should show app-name', function () {
+      expect(element.all(by.css('[ng-view] p')).last().getText()).
+          toMatch(/This is an app name: DROGO/);
+    })
 
   });
 

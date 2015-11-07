@@ -9,6 +9,17 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
-
+.controller('View1Ctrl', ['$scope', '$http', function($scope, $http) {
+  $scope.getIt = function () {
+    $http({
+      method: 'GET',
+      url: '/app/api/package.json'
+    }).then(function successCallback(response) {
+      $scope.appName = response.data.name;
+    }, function errorCallback(response) {
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
+  };
+      $scope.getIt();
 }]);
