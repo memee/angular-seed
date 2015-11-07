@@ -16,10 +16,14 @@ angular.module('myApp.view1', ['ngRoute'])
       url: '/app/api/package.json'
     }).then(function successCallback(response) {
       $scope.appName = response.data.name;
-    }, function errorCallback(response) {
-      // called asynchronously if an error occurs
-      // or server returns response with an error status.
     });
+
+    $http({
+      method: 'GET',
+      url: 'http://jsonplaceholder.typicode.com/posts/1'
+    }).then(function successCallback2(response) {
+      $scope.cite = response.data.title
+    })
   };
       $scope.getIt();
 }]);

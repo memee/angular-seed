@@ -32,8 +32,12 @@ describe('my app', function() {
     it('should show app-name', function () {
       expect(element.all(by.css('[ng-view] p')).last().getText()).
           toMatch(/This is an app name: DROGO/);
-    })
+    });
 
+    it('should show some lorem ipsum when doing CORS', function () {
+      expect(element.all(by.css('[ng-view] em')).first().getText()).
+          toMatch(/sunt aut facere repellat provident occaecati excepturi optio reprehenderit/);
+    })
   });
 
 
